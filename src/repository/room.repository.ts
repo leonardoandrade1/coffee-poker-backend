@@ -1,14 +1,13 @@
-import RoomModel from "../model/room.model";
-import IRoom from "../interface/model/room.interface";
+import RoomModel from '../model/room.model';
+import IRoom from '../interface/model/room.interface';
 
 class RoomRepository {
-    constructor() {}
-
-    async createRoom(anonymousUUID: String, ownerName: String): Promise<IRoom> {
+    //verificar pq não é retornado o ownerName
+    async createRoom(anonymousUUID: string, ownerName: string): Promise<IRoom> {
         try {
             const room = await RoomModel.create({
                 ownerId: anonymousUUID,
-                ownerName,
+                ownerName: ownerName,
             });
 
             return room;
@@ -17,10 +16,15 @@ class RoomRepository {
         }
     }
 
-    async findById(roomId: String): Promise<IRoom> {
+    async findById(roomId: string): Promise<IRoom> {
         try {
             const room = await RoomModel.findById(roomId);
-            return room;
+
+            if (room) {
+                return room;
+            } else {
+                throw Error('Room not found');
+            }
         } catch (error) {
             throw Error(error);
         }

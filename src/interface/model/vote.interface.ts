@@ -1,9 +1,9 @@
 import { Document } from "mongoose";
 
 interface IVote extends Document {
-    storyId: String;
-    userId: String;
-    vote: Number;
+    storyId: string;
+    userId: string;
+    vote: number;
     votedAt: Date;
 }
 

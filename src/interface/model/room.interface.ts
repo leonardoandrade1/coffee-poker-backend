@@ -1,9 +1,9 @@
 import { Document } from "mongoose";
 
 interface IRoom extends Document {
-    ownerId: String;
-    ownerName: String;
-    maxUsers?: Number;
+    ownerId: string;
+    ownerName: string;
+    maxUsers?: number;
     createAt?: Date;
     endedAt?: Date;
 }
