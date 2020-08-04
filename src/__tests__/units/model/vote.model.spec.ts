@@ -1,24 +1,17 @@
-import mongoose from 'mongoose';
-import { MongoMemoryServer } from 'mongodb-memory-server';
+import { MongooseBootstrapTest } from '../../config/bootstrap';
 import VoteModel from '../../../model/vote.model';
-
 import { voteMock } from '../mock/vote.mock';
 
-jest.setTimeout(15000);
 describe('VoteModel suite tests', () => {
-    let mongoServer: MongoMemoryServer;
+    let mongooseBootstrap: MongooseBootstrapTest;
 
     beforeAll(async () => {
-        mongoServer = new MongoMemoryServer();
-        const mongoUri = await mongoServer.getUri();
-        await mongoose.connect(mongoUri, {}, err => {
-            if (err) console.error(err);
-        });
+        mongooseBootstrap = new MongooseBootstrapTest();
+        await mongooseBootstrap.initialize();
     });
 
     afterAll(async () => {
-        await mongoose.disconnect();
-        await mongoServer.stop();
+        await mongooseBootstrap.finish();
     });
 
     beforeEach(async () => {
@@ -51,7 +44,7 @@ describe('VoteModel suite tests', () => {
         }
     });
 
-    it('When find vote by {id}, must return founded vote', async () => {
+    it('When find vote by {id}, must be return found vote', async () => {
         const { _id: voteId } = await VoteModel.create(voteMock);
 
         const vote = await VoteModel.findById(voteId);

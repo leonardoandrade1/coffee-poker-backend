@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import IVote from '../interface/model/vote.interface';
 
 const VoteSchema = new mongoose.Schema({
     storyId: {
@@ -20,6 +19,6 @@ const VoteSchema = new mongoose.Schema({
     },
 });
 
-const VoteModel = mongoose.model<IVote>('Vote', VoteSchema);
+const VoteModel = mongoose.model('Vote', VoteSchema);
 
 export default VoteModel;

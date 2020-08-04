@@ -1,12 +1,11 @@
-import { Document } from "mongoose";
-import IVote from "./vote.interface";
+import IVote from './vote.interface';
 
-interface IStory extends Document {
+interface IStory {
     title: string;
-    finished: boolean;
-    finishedAt: Date;
-    finalScore: Date;
-    votes: Array<IVote>;
+    finished?: boolean;
+    finishedAt?: Date;
+    finalScore?: Date;
+    votes?: Array<IVote>;
 }
 
 export default IStory;

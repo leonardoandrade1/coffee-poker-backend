@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import IRoom from "../interface/model/room.interface";
+import mongoose from 'mongoose';
 
 const RoomSchema = new mongoose.Schema(
     {
@@ -7,8 +6,12 @@ const RoomSchema = new mongoose.Schema(
             type: String,
             trim: true,
             lowercase: true,
+            required: true,
         },
-        ownerName: String,
+        ownerName: {
+            type: String,
+            required: true,
+        },
         maxUsers: {
             type: Number,
             default: 15,
@@ -21,9 +24,9 @@ const RoomSchema = new mongoose.Schema(
         timestamps: {
             currentTime: () => Math.floor(Date.now() / 1000),
         },
-    }
+    },
 );
 
-const RoomModel = mongoose.model<IRoom>("Room", RoomSchema);
+const RoomModel = mongoose.model('Room', RoomSchema);
 
 export default RoomModel;

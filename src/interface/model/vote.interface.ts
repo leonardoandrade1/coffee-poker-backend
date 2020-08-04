@@ -1,6 +1,4 @@
-import { Document } from "mongoose";
-
-interface IVote extends Document {
+interface IVote {
     storyId: string;
     userId: string;
     vote: number;

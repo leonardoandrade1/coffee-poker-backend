@@ -1,6 +1,6 @@
-import { Document } from "mongoose";
+import { Document } from 'mongoose';
 
-interface IRoom extends Document {
+interface IRoom {
     ownerId: string;
     ownerName: string;
     maxUsers?: number;
